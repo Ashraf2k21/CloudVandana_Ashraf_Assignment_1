@@ -1,0 +1,156 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Calculator</title>
+    <style>
+    body{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: 'Caveat', cursive;
+    }
+    h1{
+        text-align: center;
+    }
+    .main-div{
+        background-color:gray;
+    padding: 20px;
+    }
+    nav{
+        margin: 10px;
+    }
+    .row button{
+        height: 2cm;
+        width: 2cm;
+        border-radius: 15px;
+        border: none;
+        margin: 9px 9px;   
+    }
+
+    .num-btn{
+        background-color: white;
+        color: black;
+        box-shadow: -3px 3px 3px black;
+    }
+    .num-btn:active{
+        box-shadow: 3px -3px 3px black;
+    }
+    .red-button{
+        background-color: red;
+        color: white;
+        box-shadow: -3px 3px 3px white;
+        height: 2cm;
+        width: 2cm;
+        border-radius: 15px;
+        border: none;
+    }
+    .red-button:active{
+        box-shadow: 3px -3px 3px white;
+        
+    }
+    .math-btn{
+        background-color: black;
+        color: white;
+        box-shadow: -3px 3px 3px white;
+    }
+    .math-btn:active{
+        box-shadow: 3px -3px 3px white;
+    }
+    button{
+        font-size:xx-large;
+        font-weight: bold;
+        cursor: pointer;
+    }
+    input{   
+        padding: 20px;
+        height: 25px;
+        width:6cm;
+        margin: 20px;
+        border: none;
+        border-radius: 10px;
+        font-size: 40px;
+        box-shadow: inset 0 0 50px gray;
+    }
+
+    </style>
+</head>
+<body>
+    <div>
+        <h1>Calculator</h1>
+        <div class="main-div">
+        <div>
+            <input type="text" readonly>
+            <button class="button red-button">AC</button>
+        </div>
+        <nav>
+        <div class="row">
+            <button class="button num-btn">7</button>
+            <button class="button num-btn">8</button>
+            <button class="button num-btn">9</button>
+            <button class="button math-btn">+</button>
+        </div>
+        <div class="row">
+            <button class="button num-btn">4</button>
+            <button class="button num-btn">5</button>
+            <button class="button num-btn">6</button>
+            <button class="button math-btn">-</button>
+        </div>
+        <div class="row">
+            <button class="button num-btn">1</button>
+            <button class="button num-btn">2</button>
+            <button class="button num-btn">3</button>
+            <button class="button math-btn"><span>&#xf7</span></button>
+        </div>
+        <div class="row">
+            <button class="button num-btn ">.</button>
+            <button class="button num-btn">0</button>
+            
+            <button class="button math-btn">=</button>
+            <button class="button math-btn ">x</button>
+            
+
+        </div> 
+        </nav>  
+        </div>
+
+    </div>
+    <script>
+    let input=document.querySelector("input")
+    let buttons=document.querySelectorAll(".button")
+    function evaluateExpression(expression) {
+        try {
+            return eval(expression);
+        } catch (error) {
+            return 'Error';
+        }
+    }
+    buttons.forEach((e)=> {
+        e.addEventListener("click",()=>{
+            
+
+            const ButtonContent = e.textContent
+        
+            if (ButtonContent === '=') {
+                input.value = evaluateExpression(input.value)
+            }
+            else if(ButtonContent === 'AC'){
+                input.value=""
+            }
+            else if(ButtonContent=='x'){
+                input.value += '*'
+            }
+            else if(ButtonContent === '÷'){
+                input.value += '/'
+            }
+            else{
+                
+                input.value += ButtonContent;
+            }
+        })
+    });
+    </script>
+</body>
+</html>
